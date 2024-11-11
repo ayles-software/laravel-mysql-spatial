@@ -3,7 +3,7 @@
 namespace Grimzy\LaravelMysqlSpatial\Schema;
 
 use Illuminate\Database\Schema\Blueprint as IlluminateBlueprint;
-use Illuminate\Support\Fluent;
+use Illuminate\Database\Schema\ColumnDefinition;
 
 class Blueprint extends IlluminateBlueprint
 {
@@ -13,9 +13,9 @@ class Blueprint extends IlluminateBlueprint
      * @param string   $column
      * @param null|int $srid
      *
-     * @return Fluent
+     * @return ColumnDefinition
      */
-    public function geometry($column, $srid = null): Fluent
+    public function geometry($column, $subtype = null, $srid = 0): ColumnDefinition
     {
         return $this->addColumn('geometry', $column, compact('srid'));
     }
@@ -26,9 +26,9 @@ class Blueprint extends IlluminateBlueprint
      * @param string   $column
      * @param null|int $srid
      *
-     * @return Fluent
+     * @return ColumnDefinition
      */
-    public function point($column, $srid = null): Fluent
+    public function point($column, $srid = null): ColumnDefinition
     {
         return $this->addColumn('point', $column, compact('srid'));
     }
@@ -39,9 +39,9 @@ class Blueprint extends IlluminateBlueprint
      * @param string   $column
      * @param null|int $srid
      *
-     * @return Fluent
+     * @return ColumnDefinition
      */
-    public function lineString($column, $srid = null): Fluent
+    public function lineString($column, $srid = null): ColumnDefinition
     {
         return $this->addColumn('linestring', $column, compact('srid'));
     }
@@ -52,9 +52,9 @@ class Blueprint extends IlluminateBlueprint
      * @param string   $column
      * @param null|int $srid
      *
-     * @return Fluent
+     * @return ColumnDefinition
      */
-    public function polygon($column, $srid = null): Fluent
+    public function polygon($column, $srid = null): ColumnDefinition
     {
         return $this->addColumn('polygon', $column, compact('srid'));
     }
@@ -65,9 +65,9 @@ class Blueprint extends IlluminateBlueprint
      * @param string   $column
      * @param null|int $srid
      *
-     * @return Fluent
+     * @return ColumnDefinition
      */
-    public function multiPoint($column, $srid = null): Fluent
+    public function multiPoint($column, $srid = null): ColumnDefinition
     {
         return $this->addColumn('multipoint', $column, compact('srid'));
     }
@@ -78,9 +78,9 @@ class Blueprint extends IlluminateBlueprint
      * @param string   $column
      * @param null|int $srid
      *
-     * @return Fluent
+     * @return ColumnDefinition
      */
-    public function multiLineString($column, $srid = null): Fluent
+    public function multiLineString($column, $srid = null): ColumnDefinition
     {
         return $this->addColumn('multilinestring', $column, compact('srid'));
     }
@@ -91,9 +91,9 @@ class Blueprint extends IlluminateBlueprint
      * @param string   $column
      * @param null|int $srid
      *
-     * @return Fluent
+     * @return ColumnDefinition
      */
-    public function multiPolygon($column, $srid = null): Fluent
+    public function multiPolygon($column, $srid = null): ColumnDefinition
     {
         return $this->addColumn('multipolygon', $column, compact('srid'));
     }
@@ -104,9 +104,9 @@ class Blueprint extends IlluminateBlueprint
      * @param string   $column
      * @param null|int $srid
      *
-     * @return Fluent
+     * @return ColumnDefinition
      */
-    public function geometryCollection($column, $srid = null): Fluent
+    public function geometryCollection($column, $srid = null): ColumnDefinition
     {
         return $this->addColumn('geometrycollection', $column, compact('srid'));
     }
@@ -117,9 +117,9 @@ class Blueprint extends IlluminateBlueprint
      * @param string|array $columns
      * @param string       $name
      *
-     * @return Fluent
+     * @return ColumnDefinition
      */
-    public function spatialIndex($columns, $name = null): Fluent
+    public function spatialIndex($columns, $name = null): ColumnDefinition
     {
         return $this->indexCommand('spatial', $columns, $name);
     }
@@ -129,9 +129,9 @@ class Blueprint extends IlluminateBlueprint
      *
      * @param string|array $index
      *
-     * @return Fluent
+     * @return ColumnDefinition
      */
-    public function dropSpatialIndex($index): Fluent
+    public function dropSpatialIndex($index): ColumnDefinition
     {
         return $this->dropIndexCommand('dropIndex', 'spatial', $index);
     }
