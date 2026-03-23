@@ -119,9 +119,9 @@ class Blueprint extends IlluminateBlueprint
      *
      * @return ColumnDefinition
      */
-    public function spatialIndex($columns, $name = null): ColumnDefinition
+    public function spatialIndex($columns, $name = null, $operatorClass = null): ColumnDefinition
     {
-        return $this->indexCommand('spatial', $columns, $name);
+        return $this->indexCommand('spatial', $columns, $name, null, $operatorClass);
     }
 
     /**
